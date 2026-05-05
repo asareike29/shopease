@@ -1,0 +1,135 @@
+.about-page {
+  width: 100%;
+}
+
+.about-hero {
+  background-color: var(--primary-navy);
+  color: var(--white);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.about-hero .hero-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about-hero .hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--light-blue-bg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mission-section {
+  background-color: var(--light-blue-bg);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.mission-section h2 {
+  color: var(--primary-navy);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.mission-section p {
+  color: var(--subtle-text);
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.stats-section {
+  padding: 4rem 0;
+  background-color: var(--white);
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  color: var(--teal);
+  margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+  color: var(--primary-navy);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.values-section {
+  padding: 5rem 0;
+  background-color: #f9f9f9;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.value-card {
+  background-color: var(--white);
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+}
+
+.value-icon {
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.value-card h3 {
+  color: var(--primary-navy);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.value-card p {
+  color: var(--subtle-text);
+  line-height: 1.5;
+}
+
+.cta-section {
+  background-color: var(--primary-navy);
+  color: var(--white);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-btn {
+  background-color: var(--gold);
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+.cta-btn:hover {
+  background-color: #d99500;
+}

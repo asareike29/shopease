@@ -1,0 +1,216 @@
+.login-page {
+  background-color: var(--light-blue-bg);
+  min-height: calc(100vh - 80px); /* rough navbar offset */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.auth-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header h2 {
+  color: var(--primary-navy);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+  color: var(--subtle-text);
+}
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
+}
+
+.auth-tabs .tab-btn {
+  flex: 1;
+  background: transparent;
+  padding: 1rem;
+  font-size: 1.1rem;
+  color: var(--subtle-text);
+  border-radius: 0;
+  border-bottom: 3px solid transparent;
+}
+
+.auth-tabs .tab-btn.active {
+  color: var(--primary-navy);
+  border-bottom-color: var(--gold);
+  font-weight: bold;
+}
+
+.auth-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.auth-form input {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.auth-form input:focus {
+  border-color: var(--deep-blue);
+  box-shadow: 0 0 0 2px rgba(26, 82, 118, 0.1);
+}
+
+.password-input-wrap {
+  position: relative;
+}
+
+.toggle-pwd {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  color: var(--subtle-text);
+  font-size: 0.85rem;
+}
+
+.toggle-pwd:hover {
+  color: var(--primary-navy);
+}
+
+.forgot-pwd {
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.forgot-pwd a {
+  color: var(--teal);
+  font-size: 0.9rem;
+}
+
+.forgot-pwd a:hover {
+  text-decoration: underline;
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+}
+
+.auth-divider {
+  position: relative;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.auth-divider span {
+  background-color: var(--white);
+  padding: 0 1rem;
+  color: var(--subtle-text);
+  font-size: 0.9rem;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #eee;
+  z-index: 0;
+}
+
+.google-btn {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.auth-switch {
+  text-align: center;
+  color: var(--subtle-text);
+}
+
+.auth-switch span {
+  color: var(--teal);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.auth-switch span:hover {
+  text-decoration: underline;
+}
+
+/* Terms Checkbox specific to register */
+.terms-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: normal !important;
+  color: var(--subtle-text) !important;
+  user-select: none;
+}
+
+.terms-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.terms-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+.terms-checkbox input:checked ~ .checkmark {
+  background-color: var(--teal);
+}
+
+.terms-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.terms-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}

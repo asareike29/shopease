@@ -1,0 +1,137 @@
+.contact-page {
+  width: 100%;
+}
+
+.contact-header {
+  background-color: var(--light-blue-bg);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.contact-header h1 {
+  color: var(--primary-navy);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-header p {
+  color: var(--subtle-text);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-container {
+  padding: 4rem 1rem;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-form-section {
+  background-color: var(--white);
+  padding: 2.5rem;
+  border-radius: 8px;
+}
+
+.contact-form-section h2 {
+  color: var(--primary-navy);
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #c3e6cb;
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--primary-navy);
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(31, 138, 156, 0.2);
+}
+
+.submit-btn {
+  background-color: var(--gold);
+  color: var(--white);
+  padding: 0.75rem 2rem;
+  border: none;
+  width: 100%;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: #d99500;
+}
+
+.contact-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-card {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.info-icon {
+  background-color: var(--light-blue-bg);
+  color: var(--teal);
+  padding: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-content h3 {
+  color: var(--primary-navy);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.info-content p {
+  color: var(--subtle-text);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}

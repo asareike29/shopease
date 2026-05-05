@@ -1,0 +1,16 @@
+import { Router } from 'express';
+import { getCart, addToCart, updateCartItem, removeCartItem, clearCart } from '../controllers/cartController';
+import { authMiddleware } from '../middleware/authMiddleware';
+
+const router = Router();
+
+// Protected routes
+router.use(authMiddleware);
+
+router.get('/', getCart);
+router.post('/', addToCart);
+router.put('/:id', updateCartItem);
+router.delete('/:id', removeCartItem);
+router.delete('/', clearCart);
+
+export default router;
