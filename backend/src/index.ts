@@ -13,17 +13,34 @@ import cartRoutes from './routes/cart';
 import orderRoutes from './routes/orders';
 import paymentRoutes from './routes/payments';
 import userRoutes from './routes/users';
+import { supabase } from './services/supabaseClient';
 
 const app = express();
 
 // Health check - must be before other routes
-app.get('/health', (_req, res) => {
-  res.json({
-    status: 'ok',
-    env: process.env.NODE_ENV,
-    supabase_url: process.env.SUPABASE_URL ? 'set' : 'missing',
-    supabase_key: process.env.SUPABASE_SERVICE_KEY ? 'set' : 'missing'
-  });
+app.get('/health', async (_req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('count')
+      .limit(1);
+    
+    res.json({
+      status: 'ok',
+      env: process.env.NODE_ENV,
+      supabase_url: process.env.SUPABASE_URL ? 'set' : 'missing',
+      supabase_key: process.env.SUPABASE_SERVICE_KEY ? 'set' : 'missing',
+      supabase_connection: error ? 'FAILED: ' + error.message : 'SUCCESS',
+      data: data
+    });
+  } catch (err: any) {
+    res.json({
+      status: 'error',
+      supabase_connection: 'FAILED',
+      error: err.message,
+      stack: err.stack
+    });
+  }
 });
 
 // Then middleware and routes after

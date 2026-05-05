@@ -49,15 +49,32 @@ const cart_1 = __importDefault(require("./routes/cart"));
 const orders_1 = __importDefault(require("./routes/orders"));
 const payments_1 = __importDefault(require("./routes/payments"));
 const users_1 = __importDefault(require("./routes/users"));
+const supabaseClient_1 = require("./services/supabaseClient");
 const app = (0, express_1.default)();
 // Health check - must be before other routes
-app.get('/health', (_req, res) => {
-    res.json({
-        status: 'ok',
-        env: process.env.NODE_ENV,
-        supabase_url: process.env.SUPABASE_URL ? 'set' : 'missing',
-        supabase_key: process.env.SUPABASE_SERVICE_KEY ? 'set' : 'missing'
-    });
+app.get('/health', async (_req, res) => {
+    try {
+        const { data, error } = await supabaseClient_1.supabase
+            .from('products')
+            .select('count')
+            .limit(1);
+        res.json({
+            status: 'ok',
+            env: process.env.NODE_ENV,
+            supabase_url: process.env.SUPABASE_URL ? 'set' : 'missing',
+            supabase_key: process.env.SUPABASE_SERVICE_KEY ? 'set' : 'missing',
+            supabase_connection: error ? 'FAILED: ' + error.message : 'SUCCESS',
+            data: data
+        });
+    }
+    catch (err) {
+        res.json({
+            status: 'error',
+            supabase_connection: 'FAILED',
+            error: err.message,
+            stack: err.stack
+        });
+    }
 });
 // Then middleware and routes after
 app.use((0, helmet_1.default)());
