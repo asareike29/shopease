@@ -37,12 +37,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_fetch_1 = __importStar(require("node-fetch"));
-if (!globalThis.fetch) {
-    globalThis.fetch = node_fetch_1.default;
-    globalThis.Headers = node_fetch_1.Headers;
-    globalThis.Request = node_fetch_1.Request;
-    globalThis.Response = node_fetch_1.Response;
-}
+globalThis.fetch = node_fetch_1.default;
+globalThis.Headers = node_fetch_1.Headers;
+globalThis.Request = node_fetch_1.Request;
+globalThis.Response = node_fetch_1.Response;
 const dotenv = __importStar(require("dotenv"));
 const path = __importStar(require("path"));
 dotenv.config({ path: path.resolve(__dirname, '../.env') });

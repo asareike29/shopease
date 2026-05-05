@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import fetch from 'node-fetch';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ 
@@ -28,6 +29,6 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
     detectSessionInUrl: false
   },
   global: {
-    fetch: fetch
+    fetch: fetch as any
   }
 });

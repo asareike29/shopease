@@ -32,11 +32,15 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.supabase = void 0;
 const supabase_js_1 = require("@supabase/supabase-js");
 const dotenv = __importStar(require("dotenv"));
 const path = __importStar(require("path"));
+const node_fetch_1 = __importDefault(require("node-fetch"));
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config({
         path: path.resolve(__dirname, '../../.env')
@@ -59,6 +63,6 @@ exports.supabase = (0, supabase_js_1.createClient)(supabaseUrl, supabaseKey, {
         detectSessionInUrl: false
     },
     global: {
-        fetch: fetch
+        fetch: node_fetch_1.default
     }
 });
