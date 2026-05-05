@@ -44,8 +44,14 @@ const getAllProducts = async (req, res) => {
             limit: Number(limit)
         });
     }
-    catch (err) {
-        res.status(500).json({ success: false, message: err.message });
+    catch (error) {
+        console.error('getAllProducts error:', error);
+        return res.status(500).json({
+            success: false,
+            message: error.message,
+            stack: process.env.NODE_ENV === 'development'
+                ? error.stack : undefined
+        });
     }
 };
 exports.getAllProducts = getAllProducts;

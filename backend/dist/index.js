@@ -53,6 +53,17 @@ const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)({ origin: 'http://localhost:5173' }));
 app.use(express_1.default.json());
+app.get('/health', (_req, res) => {
+    res.json({
+        status: 'ok',
+        node_env: process.env.NODE_ENV,
+        supabase_url: process.env.SUPABASE_URL
+            ? process.env.SUPABASE_URL.substring(0, 30) + '...'
+            : 'MISSING',
+        supabase_key: process.env.SUPABASE_SERVICE_KEY
+            ? 'SET' : 'MISSING',
+    });
+});
 app.use('/api/auth', auth_1.default);
 app.use('/api/products', products_1.default);
 app.use('/api/cart', cart_1.default);

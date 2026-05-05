@@ -20,6 +20,18 @@ app.use(helmet());
 app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
 
+app.get('/health', (_req, res) => {
+  res.json({
+    status: 'ok',
+    node_env: process.env.NODE_ENV,
+    supabase_url: process.env.SUPABASE_URL 
+      ? process.env.SUPABASE_URL.substring(0, 30) + '...' 
+      : 'MISSING',
+    supabase_key: process.env.SUPABASE_SERVICE_KEY 
+      ? 'SET' : 'MISSING',
+  });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);

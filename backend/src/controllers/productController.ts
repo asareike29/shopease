@@ -52,8 +52,14 @@ export const getAllProducts = async (req: Request, res: Response) => {
       page: Number(page), 
       limit: Number(limit) 
     });
-  } catch (err: any) {
-    res.status(500).json({ success: false, message: err.message });
+  } catch (error: any) {
+    console.error('getAllProducts error:', error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+      stack: process.env.NODE_ENV === 'development' 
+        ? error.stack : undefined
+    });
   }
 };
 

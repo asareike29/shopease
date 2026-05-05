@@ -37,12 +37,22 @@ exports.supabase = void 0;
 const supabase_js_1 = require("@supabase/supabase-js");
 const dotenv = __importStar(require("dotenv"));
 const path = __importStar(require("path"));
-console.log('DIRNAME:', __dirname);
-console.log('ENV PATH:', path.resolve(__dirname, '../../.env'));
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config({
+        path: path.resolve(__dirname, '../../.env')
+    });
+}
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
-if (!supabaseUrl || !supabaseServiceKey) {
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY
+    || process.env.SUPABASE_ANON_KEY;
+console.log('Supabase URL:', supabaseUrl ? 'Found' : 'MISSING');
+console.log('Supabase Key:', supabaseKey ? 'Found' : 'MISSING');
+if (!supabaseUrl || !supabaseKey) {
     throw new Error('Missing Supabase environment variables');
 }
-exports.supabase = (0, supabase_js_1.createClient)(supabaseUrl, supabaseServiceKey);
+exports.supabase = (0, supabase_js_1.createClient)(supabaseUrl, supabaseKey, {
+    auth: {
+        autoRefreshToken: false,
+        persistSession: false
+    }
+});
