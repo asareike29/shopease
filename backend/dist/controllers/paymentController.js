@@ -58,7 +58,7 @@ const initializePayment = async (req, res) => {
         }
         const payload = {
             email,
-            amount: amount * 100, // amount in pesewas
+            amount: Math.round(amount * 100), // amount in pesewas
             currency: "GHS",
             reference: `SHOPEASE-${orderId}-${Date.now()}`,
             callback_url: `${FRONTEND_URL}/order-confirmation`,
