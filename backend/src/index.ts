@@ -16,21 +16,20 @@ import userRoutes from './routes/users';
 
 const app = express();
 
-app.use(helmet());
-app.use(cors({ origin: 'http://localhost:5173' }));
-app.use(express.json());
-
+// Health check - must be before other routes
 app.get('/health', (_req, res) => {
   res.json({
     status: 'ok',
-    node_env: process.env.NODE_ENV,
-    supabase_url: process.env.SUPABASE_URL 
-      ? process.env.SUPABASE_URL.substring(0, 30) + '...' 
-      : 'MISSING',
-    supabase_key: process.env.SUPABASE_SERVICE_KEY 
-      ? 'SET' : 'MISSING',
+    env: process.env.NODE_ENV,
+    supabase_url: process.env.SUPABASE_URL ? 'set' : 'missing',
+    supabase_key: process.env.SUPABASE_SERVICE_KEY ? 'set' : 'missing'
   });
 });
+
+// Then middleware and routes after
+app.use(helmet());
+app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);

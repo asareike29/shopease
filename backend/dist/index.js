@@ -50,20 +50,19 @@ const orders_1 = __importDefault(require("./routes/orders"));
 const payments_1 = __importDefault(require("./routes/payments"));
 const users_1 = __importDefault(require("./routes/users"));
 const app = (0, express_1.default)();
-app.use((0, helmet_1.default)());
-app.use((0, cors_1.default)({ origin: 'http://localhost:5173' }));
-app.use(express_1.default.json());
+// Health check - must be before other routes
 app.get('/health', (_req, res) => {
     res.json({
         status: 'ok',
-        node_env: process.env.NODE_ENV,
-        supabase_url: process.env.SUPABASE_URL
-            ? process.env.SUPABASE_URL.substring(0, 30) + '...'
-            : 'MISSING',
-        supabase_key: process.env.SUPABASE_SERVICE_KEY
-            ? 'SET' : 'MISSING',
+        env: process.env.NODE_ENV,
+        supabase_url: process.env.SUPABASE_URL ? 'set' : 'missing',
+        supabase_key: process.env.SUPABASE_SERVICE_KEY ? 'set' : 'missing'
     });
 });
+// Then middleware and routes after
+app.use((0, helmet_1.default)());
+app.use((0, cors_1.default)({ origin: 'http://localhost:5173' }));
+app.use(express_1.default.json());
 app.use('/api/auth', auth_1.default);
 app.use('/api/products', products_1.default);
 app.use('/api/cart', cart_1.default);
