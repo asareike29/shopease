@@ -45,14 +45,20 @@ if (process.env.NODE_ENV !== 'production') {
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY
     || process.env.SUPABASE_ANON_KEY;
-console.log('Supabase URL:', supabaseUrl ? 'Found' : 'MISSING');
-console.log('Supabase Key:', supabaseKey ? 'Found' : 'MISSING');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('SUPABASE_URL:', supabaseUrl ? 'Found' : 'MISSING');
+console.log('SUPABASE_KEY:', supabaseKey ? 'Found' : 'MISSING');
+console.log('SUPABASE_KEY prefix:', supabaseKey?.substring(0, 15));
 if (!supabaseUrl || !supabaseKey) {
     throw new Error('Missing Supabase environment variables');
 }
 exports.supabase = (0, supabase_js_1.createClient)(supabaseUrl, supabaseKey, {
     auth: {
         autoRefreshToken: false,
-        persistSession: false
+        persistSession: false,
+        detectSessionInUrl: false
+    },
+    global: {
+        fetch: fetch
     }
 });
