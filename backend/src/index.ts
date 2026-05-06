@@ -1,10 +1,3 @@
-import fetch, { Headers, Request, Response } from 'node-fetch';
-
-(globalThis as any).fetch = fetch;
-(globalThis as any).Headers = Headers;
-(globalThis as any).Request = Request;
-(globalThis as any).Response = Response;
-
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
@@ -50,9 +43,11 @@ app.get('/health', async (_req, res) => {
   }
 });
 
-// Then middleware and routes after
 app.use(helmet());
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ 
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
