@@ -1,7 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
-import fetch from 'node-fetch';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ 
@@ -16,7 +15,6 @@ const supabaseKey = process.env.SUPABASE_SERVICE_KEY
 console.log('NODE_ENV:', process.env.NODE_ENV);
 console.log('SUPABASE_URL:', supabaseUrl ? 'Found' : 'MISSING');
 console.log('SUPABASE_KEY:', supabaseKey ? 'Found' : 'MISSING');
-console.log('SUPABASE_KEY prefix:', supabaseKey?.substring(0, 15));
 
 if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing Supabase environment variables');
@@ -27,8 +25,5 @@ export const supabase = createClient(supabaseUrl, supabaseKey, {
     autoRefreshToken: false,
     persistSession: false,
     detectSessionInUrl: false
-  },
-  global: {
-    fetch: fetch as any
   }
 });
