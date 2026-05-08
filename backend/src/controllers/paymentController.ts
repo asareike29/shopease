@@ -90,7 +90,7 @@ export const verifyPayment = async (req: Request, res: Response): Promise<Respon
           .from('orders')
           .update({ 
             status: 'processing',
-            stripe_payment_id: reference 
+            payment_reference: reference 
           })
           .eq('id', orderId);
 
